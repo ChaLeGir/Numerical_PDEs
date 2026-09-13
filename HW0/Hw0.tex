@@ -1,0 +1,52 @@
+\documentclass[12pt]{article}
+
+\usepackage[left=0.9in,right=0.9in,top=0.8in,bottom=1.05in]{geometry}
+\newcommand{\ligne}[1]{\rule[0.5ex]{\textwidth}{#1}\\}
+
+\usepackage[]{graphicx}
+\usepackage{wrapfig}
+\usepackage{physics}
+
+\begin{document}
+
+\begin{center}
+\textbf{Numerical PDEs Homework \#0}\\
+\end{center}
+
+\noindent \textbf{For all problems asking for a graph:} you do not need to write up the method you programmed. Including plots of your solution and convergence is sufficient for full credit. The ideal homework will have one, information-dense and properly labeled figure with a caption and a \textit{brief} discussion. \textbf{You must type up your HW.} I don't care if it's word or Tex as long as it's well organized, easy to follow, and submitted as a pdf. 
+
+\vspace{0.3cm}
+
+\noindent \textbf{Problem 1: Finite differences}
+Write a matlab code that uses finite differences to compute the first derivative of
+$$f(x) = \exp(\sin(x))$$
+on the interval $0 \leq x \leq 2\pi$. Use second-order centered differences on internal grid points and first-order one-sided differences at endpoints. 
+\begin{enumerate}
+    \item Show a graph of the exact analytic solution $f'(x)$ and your numerical solution $f_n'(x)$. 
+    \item Show a relative error convergence plot by plotting the relative error on the y-axis and the grid size $N$ on the x-axis. Measure relative error as 
+    $$Err = \frac{\Vert f'(x) - f'_n(x) \Vert_p}{\Vert f'(x) \Vert_p}.$$
+    \noindent Plot the error using both the $p=\infty,2$ norms in a log-log scale. The relative errors should be lines with slopes 1 and 3/2 respectively, i.e. it scales with $\displaystyle \frac{1}{N}, \frac{1}{N^{3/2}}$. Extra Credit: The $3/2$ slope is strange, why is that happening?
+\end{enumerate}
+
+\vspace{0.5cm}
+
+\noindent \textbf{Problem 2: Second-order derivatives}
+Repeat problem 1 but compute the second derivative $f''(x)$. Assume periodicity and wrap around the grid instead of using one-sided finite differences.
+
+\vspace{0.5cm}
+
+\noindent \textbf{Problem 3: ODE}
+Consider the ODE
+$$\dv[2]{u}{x} + \sin(x) \dv{u}{x} + u(x) = f(x)$$
+defined on $0 \leq x \leq 5$. Solve the ODE using second-order finite difference methods with the Dirichlet conditions. Use $u(x) = \sin(x)$ to test your solution by finding boundary conditions and the necessary forcing function $f(x)$. Show an error plot that proves your method converges with second order. 
+
+\vspace{0.5cm}
+\noindent \textbf{Problem 4: Poisson Equation}
+Use finite difference methods to solve the Poisson equation $\nabla^2 u = f(x,y)$ in the domain $x \in [0, 5], y \in [0, 5]$. Use the test solution $u(x,y) = \sin(x)\cos(y)$. 
+
+\begin{enumerate}
+    \item Apply Dirichlet conditions on all boundaries so that $u(x,y)$ satisfies the PDE and the boundary conditions, and show a plot of your solution and a second order convergence plot (similar to the first three problems). 
+    \item Modify your code to apply Neumann conditions on all boundaries. \textbf{This won't work.} Why not? -- both in terms of the linear algebra and in terms of the actual PDE we want to solve. Suggest a solution to the issue.
+\end{enumerate}
+
+\end{document}
